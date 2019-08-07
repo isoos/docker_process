@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Helper method for running the `postgres` container.
+
 ## 1.0.0
 
 - Start and stop docker container (like a process).

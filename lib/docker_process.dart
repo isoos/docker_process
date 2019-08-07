@@ -27,11 +27,12 @@ class DockerProcess {
     List<String> ports,
     List<String> imageArgs,
     bool sudo = false,
-    bool cleanup = false,
+    bool cleanup,
     bool readySignal(String line),
     Duration timeout,
   }) async {
     dockerExecutable ??= 'docker';
+    cleanup ??= false;
     String command = dockerExecutable;
     final args = <String>[];
 
@@ -81,7 +82,7 @@ class DockerProcess {
     if (readySignal != null) {
       final process = await Process.start(command, args);
 
-      Completer c = Completer();
+      final c = Completer();
       final timer = Timer(timeout ?? const Duration(minutes: 1), () {
         if (c.isCompleted) return;
         c.completeError('timeout');
