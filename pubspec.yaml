@@ -1,6 +1,6 @@
 name: docker_process
 description: Access wrapper to interact with a docker container like a process.
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/isoos/docker_process
 author: Istvan Soos <istvan.soos@gmail.com>
 
