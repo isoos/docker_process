@@ -7,6 +7,7 @@ Future<DockerProcess> startPostgres({
   @required String name,
   @required String version,
   String imageName = 'postgres',
+  String network,
   String pgUser,
   String pgPassword = 'postgres',
   String pgDatabase,
@@ -18,6 +19,8 @@ Future<DockerProcess> startPostgres({
   return await DockerProcess.start(
     name: name,
     image: '$imageName:$version',
+    network: network,
+    hostname: name,
     ports: ['$pgPort:5432'],
     cleanup: cleanup,
     readySignal: (line) {

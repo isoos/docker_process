@@ -1,3 +1,7 @@
+## 1.1.2
+
+- `network` and `hostname` setting in pre-configured containers.
+
 ## 1.1.1
 
 - Helper method for running the CockroachDB container.

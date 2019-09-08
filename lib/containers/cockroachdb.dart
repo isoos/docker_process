@@ -7,6 +7,7 @@ Future<DockerProcess> startCockroachDB({
   @required String name,
   @required String version,
   String imageName = 'cockroachdb/cockroach',
+  String network,
   int pgPort = 26257,
   int httpPort = 8080,
   bool cleanup,
@@ -16,6 +17,8 @@ Future<DockerProcess> startCockroachDB({
   return await DockerProcess.start(
     name: name,
     image: '$imageName:$version',
+    network: network,
+    hostname: name,
     ports: ['$pgPort:26257', '$httpPort:8080'],
     cleanup: cleanup,
     readySignal: (line) {
