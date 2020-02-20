@@ -13,10 +13,19 @@ void main() {
 
     test('run', () async {
       dp = await startCockroachDB(
-          name: 'test_crdb', version: 'latest', cleanup: true);
+        name: 'test_crdb',
+        version: 'latest',
+        cleanup: true,
+        initialize: true,
+      );
 
-      final c = PostgreSQLConnection('localhost', 26257, 'root',
-          username: 'root', password: 'crdb');
+      final c = PostgreSQLConnection(
+        'localhost',
+        26257,
+        'root',
+        username: 'root',
+        password: 'crdb',
+      );
       await c.open();
       await c.close();
     });

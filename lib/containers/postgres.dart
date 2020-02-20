@@ -14,7 +14,7 @@ Future<DockerProcess> startPostgres({
   int pgPort = 5432,
   bool cleanup,
 }) async {
-  bool ipv4 = false;
+  var ipv4 = false;
 
   return await DockerProcess.start(
     name: name,

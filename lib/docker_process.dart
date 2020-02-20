@@ -28,12 +28,12 @@ class DockerProcess {
     List<String> imageArgs,
     bool sudo = false,
     bool cleanup,
-    bool readySignal(String line),
+    FutureOr<bool> Function(String line) readySignal,
     Duration timeout,
   }) async {
     dockerExecutable ??= 'docker';
     cleanup ??= false;
-    String command = dockerExecutable;
+    var command = dockerExecutable;
     final args = <String>[];
 
     if (sudo) {
@@ -93,11 +93,11 @@ class DockerProcess {
         return stream
             .transform(utf8.decoder)
             .transform(LineSplitter())
-            .listen((String line) {
-          if (readySignal(line)) {
-            subs1?.cancel();
+            .listen((String line) async {
+          if (await readySignal(line)) {
+            await subs1?.cancel();
             subs1 = null;
-            subs2?.cancel();
+            await subs2?.cancel();
             subs2 = null;
             if (c.isCompleted) return;
             c.complete();
@@ -134,8 +134,7 @@ class DockerProcess {
     _logger.info({
       'executing': {'name': _name, 'args': args},
     });
-    return Process.run(
-        _dockerExecutable, <String>['exec', _name]..addAll(args));
+    return Process.run(_dockerExecutable, <String>['exec', _name, ...args]);
   }
 
   /// Kill the docker container.

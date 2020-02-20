@@ -13,10 +13,18 @@ void main() {
 
     test('run', () async {
       dp = await startPostgres(
-          name: 'test_postgres', version: 'latest', cleanup: true);
+        name: 'test_postgres',
+        version: 'latest',
+        cleanup: true,
+      );
 
-      final c = PostgreSQLConnection('localhost', 5432, 'postgres',
-          username: 'postgres', password: 'postgres');
+      final c = PostgreSQLConnection(
+        'localhost',
+        5432,
+        'postgres',
+        username: 'postgres',
+        password: 'postgres',
+      );
       await c.open();
       await c.close();
     });
