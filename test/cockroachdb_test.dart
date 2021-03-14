@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('CockroachDB', () {
-    DockerProcess dp;
+    DockerProcess? dp;
 
     tearDownAll(() async {
       await dp?.stop();

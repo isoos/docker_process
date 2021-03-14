@@ -1,24 +1,23 @@
 import 'dart:io';
 
 import 'package:docker_process/docker_process.dart';
-import 'package:meta/meta.dart';
 
 export 'package:docker_process/docker_process.dart';
 
 Future<DockerProcess> startCockroachDB({
-  @required String name,
-  @required String version,
+  required String name,
+  required String version,
   String imageName = 'cockroachdb/cockroach',
-  String network,
+  String? network,
   int pgPort = 26257,
   int httpPort = 8080,
-  bool cleanup,
+  bool? cleanup,
   bool secure = false,
   bool initialize = false,
-  List<String> attrs,
-  List<String> join,
-  String advertiseHost,
-  int advertisePort,
+  List<String>? attrs,
+  List<String>? join,
+  String? advertiseHost,
+  int? advertisePort,
 }) async {
   final isJoining = join != null && join.isNotEmpty;
   var starting = false;
@@ -62,7 +61,7 @@ Future<DockerProcess> startCockroachDB({
       if (attrs != null && attrs.isNotEmpty) ...['--attrs', attrs.join(',')],
       if (advertiseHost != null) '--advertise-host=$advertiseHost',
       if (advertisePort != null) '--advertise-port=$advertisePort',
-      if (isJoining) ...['--join', join.join(',')],
+      if (isJoining) ...['--join', join!.join(',')],
     ],
   );
 }

@@ -1,18 +1,17 @@
 import 'package:docker_process/docker_process.dart';
-import 'package:meta/meta.dart';
 
 export 'package:docker_process/docker_process.dart';
 
 Future<DockerProcess> startPostgres({
-  @required String name,
-  @required String version,
+  required String name,
+  required String version,
   String imageName = 'postgres',
-  String network,
-  String pgUser,
+  String? network,
+  String? pgUser,
   String pgPassword = 'postgres',
-  String pgDatabase,
+  String? pgDatabase,
   int pgPort = 5432,
-  bool cleanup,
+  bool? cleanup,
 }) async {
   var ipv4 = false;
 

@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('postgres', () {
-    DockerProcess dp;
+    DockerProcess? dp;
 
     tearDownAll(() async {
       await dp?.stop();

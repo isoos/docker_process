@@ -1,3 +1,7 @@
+## 1.3.0
+
+- Migrated to null safety.
+
 ## 1.2.0
 
 - Updated code to modern SDK and current lints.

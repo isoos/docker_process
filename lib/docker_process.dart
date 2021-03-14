@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:logging/logging.dart';
-import 'package:meta/meta.dart';
 
 final _logger = Logger('docker_process');
 
@@ -16,20 +15,20 @@ class DockerProcess {
 
   /// Starts a docker container.
   static Future<DockerProcess> start({
-    @required String image,
-    @required String name,
-    String dockerExecutable,
-    String dockerCommand,
-    List<String> dockerArgs,
-    String network,
-    String hostname,
-    Map<String, String> environment,
-    List<String> ports,
-    List<String> imageArgs,
+    required String image,
+    required String name,
+    String? dockerExecutable,
+    String? dockerCommand,
+    List<String>? dockerArgs,
+    String? network,
+    String? hostname,
+    Map<String, String>? environment,
+    List<String>? ports,
+    List<String>? imageArgs,
     bool sudo = false,
-    bool cleanup,
-    FutureOr<bool> Function(String line) readySignal,
-    Duration timeout,
+    bool? cleanup,
+    FutureOr<bool> Function(String line)? readySignal,
+    Duration? timeout,
   }) async {
     dockerExecutable ??= 'docker';
     cleanup ??= false;
@@ -87,8 +86,8 @@ class DockerProcess {
         if (c.isCompleted) return;
         c.completeError('timeout');
       });
-      StreamSubscription subs1;
-      StreamSubscription subs2;
+      StreamSubscription? subs1;
+      StreamSubscription? subs2;
       StreamSubscription subs(Stream<List<int>> stream) {
         return stream
             .transform(utf8.decoder)
@@ -111,17 +110,17 @@ class DockerProcess {
       final dp = DockerProcess._(dockerExecutable, name);
 
       try {
-        await c?.future;
+        await c.future;
       } catch (_) {
         await dp.kill();
         rethrow;
       } finally {
-        timer?.cancel();
+        timer.cancel();
       }
       return dp;
     } else {
       final pr = await Process.run(command, args);
-      if (pr.exitCode != null) {
+      if (pr.exitCode != 0) {
         throw Exception(
             'exitCode: ${pr.exitCode}\n\nstdout: ${pr.stdout}\n\nstderr: ${pr.stderr}');
       }
