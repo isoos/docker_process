@@ -1,3 +1,13 @@
+## 1.3.1
+
+- Added new optional parameters to `startPostgres` ([#2][] by [osaxma][]):
+  - `postgresqlConfPath` to mount a custom `postgresql.conf` file
+  - `pgHbaConfPath` to mount a custom `pg_hba.conf` file
+  - `configurations` to supply any individual configs (e.g. `['shared_buffers=256MB']`)
+
+[#2]: https://github.com/isoos/docker_process/pull/2
+[osaxma]: https://github.com/osaxma
+
 ## 1.3.0
 
 - Migrated to null safety.
