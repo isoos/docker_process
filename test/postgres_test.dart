@@ -140,7 +140,7 @@ void main() {
         version: 'latest',
         cleanup: true,
         pgPort: 5432,
-        configuraions: ['max_connections=42'],
+        configurations: ['max_connections=42'],
       );
 
       // confirm sample_postgresql.conf is mounted correctly

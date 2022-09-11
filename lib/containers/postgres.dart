@@ -8,7 +8,7 @@ export 'package:docker_process/docker_process.dart';
 /// Use [postgresqlConfPath] or [pgHbaConfPath] to mount `postgresql.conf`
 /// or `pg_hba.conf` on the container, respectively.
 ///
-/// Use [configuraions] to pass list of configs to the `postgres` image. For
+/// Use [configurations] to pass list of configs to the `postgres` image. For
 /// example: ['shared_buffers=256MB', 'max_connections=200']. As shown, each
 /// item in the list must contain the parameter and its assignment in as a single
 /// item.
@@ -26,15 +26,15 @@ Future<DockerProcess> startPostgres({
   bool? cleanup,
   String? postgresqlConfPath,
   String? pgHbaConfPath,
-  List<String>? configuraions,
+  List<String>? configurations,
 }) async {
   var ipv4 = false;
 
   final dockerArgs = <String>[];
   final imageArgs = <String>[];
 
-  if (configuraions != null) {
-    for (var config in configuraions) {
+  if (configurations != null) {
+    for (var config in configurations) {
       imageArgs.add('-c');
       imageArgs.add(config);
     }
