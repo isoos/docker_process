@@ -9,9 +9,9 @@ export 'package:docker_process/docker_process.dart';
 /// or `pg_hba.conf` on the container, respectively.
 ///
 /// Use [configuraions] to pass list of configs to the `postgres` image. For
-/// example: ['shared_buffers=256MB', 'max_connections=200']. As shown, each 
+/// example: ['shared_buffers=256MB', 'max_connections=200']. As shown, each
 /// item in the list must contain the parameter and its assignment in as a single
-/// item. 
+/// item.
 ///
 /// For other options, please refer to [DockerProcess.start].
 Future<DockerProcess> startPostgres({
@@ -69,7 +69,8 @@ Future<DockerProcess> startPostgres({
     cleanup: cleanup,
     readySignal: (line) {
       ipv4 |= line.contains('listening on IPv4 address "0.0.0.0", port 5432');
-      return ipv4 && line.contains('database system is ready to accept connections');
+      return ipv4 &&
+          line.contains('database system is ready to accept connections');
     },
     environment: {
       if (pgUser != null) 'POSTGRES_USER': pgUser,

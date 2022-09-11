@@ -74,9 +74,9 @@ void main() {
         name: 'test_pg_hba_conf_mounting',
         version: 'latest',
         cleanup: true,
-        // this would conflict with the other test in the group 
+        // this would conflict with the other test in the group
         // so it's a different number
-        pgPort: 54321, 
+        pgPort: 54321,
         pgHbaConfPath: pgHbaConfPath,
       );
       final res = await dp2!.exec([
