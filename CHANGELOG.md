@@ -1,3 +1,8 @@
+## 1.3.2
+
+- Added optional `timeZone` parameter for `postgresql` start method
+  (will fill both `TZ` and `PGTZ` environment variable).
+
 ## 1.3.1
 
 - Added new optional parameters to `startPostgres` ([#2][] by [osaxma][]):

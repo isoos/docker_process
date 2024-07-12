@@ -27,6 +27,7 @@ Future<DockerProcess> startPostgres({
   String? postgresqlConfPath,
   String? pgHbaConfPath,
   List<String>? configurations,
+  String? timeZone,
 }) async {
   var ipv4 = false;
 
@@ -76,6 +77,8 @@ Future<DockerProcess> startPostgres({
       if (pgUser != null) 'POSTGRES_USER': pgUser,
       'POSTGRES_PASSWORD': pgPassword,
       if (pgDatabase != null) 'POSTGRES_DB': pgDatabase,
+      if (timeZone != null) 'TZ': timeZone,
+      if (timeZone != null) 'PGTZ': timeZone,
     },
   );
 }
